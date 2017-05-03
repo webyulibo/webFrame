@@ -1,0 +1,2 @@
+记录了对smart-framework框架的更改
+1.把pom.xml中原来的dhcp连接池更换为alibaba的druid连接池
