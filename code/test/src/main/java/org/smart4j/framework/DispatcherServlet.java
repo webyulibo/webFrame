@@ -37,13 +37,10 @@ import org.smart4j.framework.util.StringUtil;
  */
 @WebServlet(urlPatterns = "/*", loadOnStartup = 0)
 public class DispatcherServlet extends HttpServlet {
-
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
         HelperLoader.init();
-
         ServletContext servletContext = servletConfig.getServletContext();
-
         registerServlet(servletContext);
     }
 
@@ -51,9 +48,7 @@ public class DispatcherServlet extends HttpServlet {
         ServletRegistration jspServlet = servletContext.getServletRegistration("jsp");
         jspServlet.addMapping("/index.jsp");
         jspServlet.addMapping(ConfigHelper.getAppJspPath() + "*");
-
         ServletRegistration defaultServlet = servletContext.getServletRegistration("default");
-        defaultServlet.addMapping("/favicon.ico");
         defaultServlet.addMapping(ConfigHelper.getAppAssetPath() + "*");
     }
 
@@ -79,7 +74,7 @@ public class DispatcherServlet extends HttpServlet {
                 	String[] params=StringUtil.splitString(body, "&");
                 	if(ArrayUtil.isNotEmpty(params)){
                 		for(String param:params){
-                			String[] array=StringUtil.splitString(body, "=");
+                			String[] array=StringUtil.splitString(param, "=");
                 			if(ArrayUtil.isNotEmpty(array)&&array.length==2){
                 				String paraName=array[0];
                             	String paraValue=array[1];
