@@ -79,6 +79,12 @@
              <artifactId>druid</artifactId>
             <version>1.0.18</version>
         </dependency>
+        <!-- CGLIB -->
+        <dependency>
+             <groupId>cglib</groupId>
+             <artifactId>cglib</artifactId>
+            <version>2.2.2</version>
+        </dependency>
         <!-- Apache Commons DBCP -->
         <dependency>
             <groupId>org.apache.commons</groupId>
