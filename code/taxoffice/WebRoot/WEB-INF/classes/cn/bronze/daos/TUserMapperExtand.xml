@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bronze.daos.TUserMapperExtand" >
+  <resultMap id="BaseResultMap" type="cn.bronze.entities.TUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="useraccount" property="useraccount" jdbcType="VARCHAR" />
+    <result column="userpassword" property="userpassword" jdbcType="VARCHAR" />
+    <result column="usercode" property="usercode" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="usertype" property="usertype" jdbcType="VARCHAR" />
+    <result column="userbankcode" property="userbankcode" jdbcType="VARCHAR" />
+    <result column="usersalarycode" property="usersalarycode" jdbcType="VARCHAR" />
+    <result column="usersex" property="usersex" jdbcType="VARCHAR" />
+    <result column="userstate" property="userstate" jdbcType="VARCHAR" />
+    <result column="userdep" property="userdep" jdbcType="VARCHAR" />
+    <result column="userrole" property="userrole" jdbcType="INTEGER" />
+    <result column="userduty" property="userduty" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectUserState" resultType="String">
+  	SELECT DISTINCT userstate FROM t_user 
+  </select>
+    <select id="selectUserDuty" resultType="String">
+  	SELECT DISTINCT userduty FROM t_user 
+  </select>
+    <select id="selectUserDep" resultType="String">
+  	SELECT DISTINCT userdep FROM t_user 
+  </select>
+    <select id="selectUserType" resultType="String">
+  	SELECT DISTINCT usertype FROM t_user 
+  </select>
+  </mapper>

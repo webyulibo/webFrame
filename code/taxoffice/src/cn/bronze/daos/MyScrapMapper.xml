@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bronze.daos.MyScrapMapper" >
+  <resultMap id="BaseResultMap" type="cn.bronze.entities.TScrap" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="scrapnum" property="scrapnum" jdbcType="VARCHAR" />
+    <result column="assetname" property="assetname" jdbcType="VARCHAR" />
+    <result column="assetcode" property="assetcode" jdbcType="VARCHAR" />
+    <result column="cleandate" property="cleandate" jdbcType="DATE" />
+    <result column="cleanway" property="cleanway" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+    <!--改变资产的状态  -->
+  <update id="changeAssetState" parameterType="String" >
+    update t_asset  set usestate = '损坏不能用' where code = #{assetcode,jdbcType=VARCHAR}
+  </update>
+  <update id="changeAssetState1" parameterType="String" >
+    update t_asset  set usestate = '闲置' where code = #{assetcode,jdbcType=VARCHAR}
+  </update>
+  </mapper>

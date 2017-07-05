@@ -1,0 +1,5 @@
+0:0:0:0:0:0:0:1 - - [17/Nov/2016:20:34:43 +0800] "GET /show.html HTTP/1.1" 200 5 http-bio-8082-exec-1 90
+0:0:0:0:0:0:0:1 - - [17/Nov/2016:20:34:43 +0800] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-8082-exec-2 10
+0:0:0:0:0:0:0:1 - - [17/Nov/2016:20:35:45 +0800] "GET /show.html HTTP/1.1" 200 5 http-bio-8082-exec-4 5
+0:0:0:0:0:0:0:1 - - [17/Nov/2016:20:35:45 +0800] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-8082-exec-5 2
+0:0:0:0:0:0:0:1 - - [17/Nov/2016:20:36:08 +0800] "GET /index.html HTTP/1.1" 200 2232 http-bio-8082-exec-6 13145

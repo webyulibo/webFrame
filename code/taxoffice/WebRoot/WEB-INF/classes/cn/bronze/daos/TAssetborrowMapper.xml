@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bronze.daos.TAssetborrowMapper" >
+  <resultMap id="BaseResultMap" type="cn.bronze.entities.TAssetborrow" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="borrownum" property="borrownum" jdbcType="VARCHAR" />
+    <result column="assetcode" property="assetcode" jdbcType="VARCHAR" />
+    <result column="assetname" property="assetname" jdbcType="VARCHAR" />
+    <result column="borrowdate" property="borrowdate" jdbcType="TIMESTAMP" />
+    <result column="borrowdep" property="borrowdep" jdbcType="VARCHAR" />
+    <result column="borrowpeople" property="borrowpeople" jdbcType="VARCHAR" />
+    <result column="approvepeople" property="approvepeople" jdbcType="VARCHAR" />
+    <result column="plandate" property="plandate" jdbcType="TIMESTAMP" />
+    <result column="borrowusedep" property="borrowusedep" jdbcType="VARCHAR" />
+    <result column="borrowuser" property="borrowuser" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, borrownum, assetcode, assetname, borrowdate, borrowdep, borrowpeople, approvepeople, 
+    plandate, borrowusedep, borrowuser, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.bronze.entities.TAssetborrowExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_assetborrow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_assetborrow
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_assetborrow
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.bronze.entities.TAssetborrowExample" >
+    delete from t_assetborrow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.bronze.entities.TAssetborrow" >
+    insert into t_assetborrow (id, borrownum, assetcode, 
+      assetname, borrowdate, borrowdep, 
+      borrowpeople, approvepeople, plandate, 
+      borrowusedep, borrowuser, remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{borrownum,jdbcType=VARCHAR}, #{assetcode,jdbcType=VARCHAR}, 
+      #{assetname,jdbcType=VARCHAR}, #{borrowdate,jdbcType=TIMESTAMP}, #{borrowdep,jdbcType=VARCHAR}, 
+      #{borrowpeople,jdbcType=VARCHAR}, #{approvepeople,jdbcType=VARCHAR}, #{plandate,jdbcType=TIMESTAMP}, 
+      #{borrowusedep,jdbcType=VARCHAR}, #{borrowuser,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.bronze.entities.TAssetborrow" >
+    insert into t_assetborrow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="borrownum != null" >
+        borrownum,
+      </if>
+      <if test="assetcode != null" >
+        assetcode,
+      </if>
+      <if test="assetname != null" >
+        assetname,
+      </if>
+      <if test="borrowdate != null" >
+        borrowdate,
+      </if>
+      <if test="borrowdep != null" >
+        borrowdep,
+      </if>
+      <if test="borrowpeople != null" >
+        borrowpeople,
+      </if>
+      <if test="approvepeople != null" >
+        approvepeople,
+      </if>
+      <if test="plandate != null" >
+        plandate,
+      </if>
+      <if test="borrowusedep != null" >
+        borrowusedep,
+      </if>
+      <if test="borrowuser != null" >
+        borrowuser,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="borrownum != null" >
+        #{borrownum,jdbcType=VARCHAR},
+      </if>
+      <if test="assetcode != null" >
+        #{assetcode,jdbcType=VARCHAR},
+      </if>
+      <if test="assetname != null" >
+        #{assetname,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowdate != null" >
+        #{borrowdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="borrowdep != null" >
+        #{borrowdep,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowpeople != null" >
+        #{borrowpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="approvepeople != null" >
+        #{approvepeople,jdbcType=VARCHAR},
+      </if>
+      <if test="plandate != null" >
+        #{plandate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="borrowusedep != null" >
+        #{borrowusedep,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowuser != null" >
+        #{borrowuser,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.bronze.entities.TAssetborrowExample" resultType="java.lang.Integer" >
+    select count(*) from t_assetborrow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_assetborrow
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.borrownum != null" >
+        borrownum = #{record.borrownum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assetcode != null" >
+        assetcode = #{record.assetcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assetname != null" >
+        assetname = #{record.assetname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.borrowdate != null" >
+        borrowdate = #{record.borrowdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.borrowdep != null" >
+        borrowdep = #{record.borrowdep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.borrowpeople != null" >
+        borrowpeople = #{record.borrowpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approvepeople != null" >
+        approvepeople = #{record.approvepeople,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plandate != null" >
+        plandate = #{record.plandate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.borrowusedep != null" >
+        borrowusedep = #{record.borrowusedep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.borrowuser != null" >
+        borrowuser = #{record.borrowuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_assetborrow
+    set id = #{record.id,jdbcType=INTEGER},
+      borrownum = #{record.borrownum,jdbcType=VARCHAR},
+      assetcode = #{record.assetcode,jdbcType=VARCHAR},
+      assetname = #{record.assetname,jdbcType=VARCHAR},
+      borrowdate = #{record.borrowdate,jdbcType=TIMESTAMP},
+      borrowdep = #{record.borrowdep,jdbcType=VARCHAR},
+      borrowpeople = #{record.borrowpeople,jdbcType=VARCHAR},
+      approvepeople = #{record.approvepeople,jdbcType=VARCHAR},
+      plandate = #{record.plandate,jdbcType=TIMESTAMP},
+      borrowusedep = #{record.borrowusedep,jdbcType=VARCHAR},
+      borrowuser = #{record.borrowuser,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bronze.entities.TAssetborrow" >
+    update t_assetborrow
+    <set >
+      <if test="borrownum != null" >
+        borrownum = #{borrownum,jdbcType=VARCHAR},
+      </if>
+      <if test="assetcode != null" >
+        assetcode = #{assetcode,jdbcType=VARCHAR},
+      </if>
+      <if test="assetname != null" >
+        assetname = #{assetname,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowdate != null" >
+        borrowdate = #{borrowdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="borrowdep != null" >
+        borrowdep = #{borrowdep,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowpeople != null" >
+        borrowpeople = #{borrowpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="approvepeople != null" >
+        approvepeople = #{approvepeople,jdbcType=VARCHAR},
+      </if>
+      <if test="plandate != null" >
+        plandate = #{plandate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="borrowusedep != null" >
+        borrowusedep = #{borrowusedep,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowuser != null" >
+        borrowuser = #{borrowuser,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bronze.entities.TAssetborrow" >
+    update t_assetborrow
+    set borrownum = #{borrownum,jdbcType=VARCHAR},
+      assetcode = #{assetcode,jdbcType=VARCHAR},
+      assetname = #{assetname,jdbcType=VARCHAR},
+      borrowdate = #{borrowdate,jdbcType=TIMESTAMP},
+      borrowdep = #{borrowdep,jdbcType=VARCHAR},
+      borrowpeople = #{borrowpeople,jdbcType=VARCHAR},
+      approvepeople = #{approvepeople,jdbcType=VARCHAR},
+      plandate = #{plandate,jdbcType=TIMESTAMP},
+      borrowusedep = #{borrowusedep,jdbcType=VARCHAR},
+      borrowuser = #{borrowuser,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bronze.daos.MyReturnMapper" >
+  <resultMap id="BaseResultMap" type="cn.bronze.entities.TBack" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="assetname" property="assetname" jdbcType="VARCHAR" />
+    <result column="assetcode" property="assetcode" jdbcType="VARCHAR" />
+    <result column="borrownum" property="borrownum" jdbcType="VARCHAR" />
+    <result column="backnum" property="backnum" jdbcType="VARCHAR" />
+    <result column="backdate" property="backdate" jdbcType="DATE" />
+    <result column="backpeople" property="backpeople" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <!--改变资产的状态  -->
+  <update id="changeAssetState" parameterType="String" >
+    update t_asset  set usestate = '闲置' where code = #{assetcode,jdbcType=VARCHAR}
+  </update>
+  <!-- 用于监听文本框变化查出assetname-->
+<select id="getAssetname" parameterType="String" resultType="String"> 
+select assetname  from t_assetborrow where borrownum= #{borrownum,jdbcType=VARCHAR}
+</select>
+  <!-- 用于监听文本框变化查出assetname-->
+<select id="getAssetcode" parameterType="String" resultType="String"> 
+select assetcode  from t_assetborrow where borrownum= #{borrownum,jdbcType=VARCHAR}
+</select>
+ <!-- 用于监听文本框变化查出borrowpeople-->
+<select id="getBorrowpeople" parameterType="String" resultType="String"> 
+select borrowuser  from t_assetborrow where borrownum= #{borrownum,jdbcType=VARCHAR}
+</select>
+<!--  -->
+<select id="getBorrownum1" parameterType="String" resultType="String"> 
+select borrownum  from t_assetborrow where assetcode= #{assetcode,jdbcType=VARCHAR}
+</select>
+<select id="getAssetname1" parameterType="String" resultType="String"> 
+select assetname  from t_assetborrow where assetcode= #{assetcode,jdbcType=VARCHAR}
+</select>
+<select id="getBorrowpeople1" parameterType="String" resultType="String"> 
+select borrowpeople  from t_assetborrow where assetcode= #{assetcode,jdbcType=VARCHAR}
+</select>
+<!--  -->
+<select id="getBorrownum2" parameterType="String" resultType="String"> 
+select borrownum  from t_assetborrow where assetname= #{assetname,jdbcType=VARCHAR}
+</select>
+<select id="getAssetcode2" parameterType="String" resultType="String"> 
+select assetcode  from t_assetborrow where assetname= #{assetname,jdbcType=VARCHAR}
+</select>
+<select id="getBorrowpeople2" parameterType="String" resultType="String"> 
+select borrowpeople  from t_assetborrow where assetname= #{assetname,jdbcType=VARCHAR}
+</select>
+</mapper>

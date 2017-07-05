@@ -1,0 +1,143 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<link href="/js/kindeditor-4.1.10/themes/default/default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<div style="padding:10px 10px 10px 10px">
+	<form id="contentAddForm" class="itemForm" method="post">
+		<input type="hidden" name="categoryId"  id="categoryId"/>
+	    <table cellpadding="5">
+	        <tr >
+	            <td id="J_title1">内容标题:</td>
+	            <td id="J_title2"><input class="easyui-textbox" type="text" id="title"  name="title" data-options="required:true" style="width: 280px;"></input></td>
+	        </tr>
+	        <tr >
+	            <td id="J_specialy">学院特色:</td>
+	            <td id="J_titleDesc1y">
+	            	<div id="">
+	            		<input name="titleDesc" type="radio" value="1" />是
+	            		<input name="titleDesc" type="radio" value="0" />否 
+	            	</div>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td id="J_subTitle1">内容子标题:</td>
+	            <td id="J_subTitle2"><input class="easyui-textbox" type="text" id="subTitle" name="subTitle" style="width: 280px;"></input></td>
+	        </tr>
+	        <tr>
+	            <td id="J_titleDesc1">内容描述:</td>
+	            <td id="J_titleDesc2"><input class="easyui-textbox" name="titleDesc_n" id="titleDesc_n" data-options="multiline:true,validType:'length[0,150]'" style="height:60px;width: 280px;"></input>
+	            </td>
+	        </tr>
+	         <tr>
+	            <td id="J_url1">URL:</td>
+	            <td id="J_url2"><input class="easyui-textbox" type="text" id="url" name="url" style="width: 280px;" value="http://"></input></td>
+	        </tr>
+	        <tr>
+	            <td id="J_pic">图片:</td>
+	            <td id="photo">
+	                <input type="hidden" id="pic" name="pic" />
+	                <a href="javascript:void(0)" class="easyui-linkbutton onePicUpload">图片上传</a>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td id="J_pic1">图片2:</td>
+	            <td id="J_pic2">
+	            	<input type="hidden" name="pic2" id="pic2" />
+	            	<a href="javascript:void(0)" class="easyui-linkbutton onePicUpload">图片上传</a>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td id="J_content1">内容:</td>
+	            <td id="J_content2">
+	                <textarea style="width:1000px;height:600px;visibility:hidden;" id="content" name="content"></textarea>
+	            </td>
+	        </tr>
+	    </table>
+	</form>
+	<div style="padding:5px">
+	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="contentAddPage.submitForm()">提交</a>
+	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="contentAddPage.clearForm()">重置</a>
+	</div>
+</div>
+<script type="text/javascript">
+	var contentAddEditor ;
+	$(function(){
+		contentAddEditor = TT.createEditor("#contentAddForm [name=content]");
+		TT.initOnePicUpload();
+		$("#contentAddForm [name=categoryId]").val($("#contentCategoryTree").tree("getSelected").id);
+	});
+	
+	var contentAddPage  = {
+			submitForm : function (){
+				//手动根据各个情况进行校验
+				var categoryId= document.getElementById("categoryId").value;
+				var hiddentype;
+				
+				if(categoryId=="61"){//logo及地址的 id对应hiddentype
+					if(document.getElementById("title").value==""||document.getElementById("subTitle").value==""||document.getElementById("titleDesc_n").value==""){
+						$.messager.alert('提示','表单还未填写完成!');
+						return ;
+					}					
+					if(document.getElementById("pic").value==""){
+						$.messager.alert('提示','请上传图片!');
+						return ;
+					}
+				}else if(categoryId=="62"||categoryId=="65"||categoryId=="68"){//相关链接、院长信箱、推荐站点
+					
+					if(document.getElementById("url").value==""||document.getElementById("title").value==""){
+						$.messager.alert('提示','表单还未填写完成!');
+						return ;
+					}else{
+						/* var url=document.getElementById("url").value;
+						var regExp=new RegExp("((^http)|(^https)|(^ftp))://(\w)+.(\w)+");
+						var rtn=url.match(regExp);
+						if (rtn==null)
+						{
+							$.messager.alert('提示','URL格式不正确！请查看是否为http://,https://,ftp://');
+							return;
+						} */
+					}
+					
+				}else if(categoryId=="63"){//关注我们
+					
+					if(document.getElementById("pic2").value==""||document.getElementById("pic").value==""){
+						$.messager.alert('提示','请上传两个图片!');
+						return ;
+					}
+				
+				}else if(categoryId=="69"){ //页眉logo
+					
+					if(document.getElementById("pic2").value==""||document.getElementById("pic").value==""){
+						$.messager.alert('提示','请上传两个图片!');
+						return ;
+					}
+				
+				}else if(categoryId=="64"){//大广告
+					
+					if(document.getElementById("pic").value==""||document.getElementById("title").value==""){
+						$.messager.alert('提示','表单还未填写完成!');
+						return ;
+					}
+				
+				}else {//在线展示
+					
+					if(document.getElementById("title").value==""){
+						$.messager.alert('提示','表单还未填写完成!');
+						return ;
+					}
+				}
+				contentAddEditor.sync();
+				$.post("/content/save",$("#contentAddForm").serialize(), function(data){
+					if(data.status == 200){
+    					$("#contentList").datagrid("reload");
+    					TT.closeCurrentWindow();
+    					$.messager.alert('提示','新增内容成功!');
+					}
+				});
+			},
+			clearForm : function(){
+				$('#contentAddForm').form('reset');
+				contentAddEditor.html('');
+			}
+	};
+</script>

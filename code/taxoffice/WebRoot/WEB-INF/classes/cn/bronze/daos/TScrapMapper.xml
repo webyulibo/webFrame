@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bronze.daos.TScrapMapper" >
+  <resultMap id="BaseResultMap" type="cn.bronze.entities.TScrap" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="scrapnum" property="scrapnum" jdbcType="VARCHAR" />
+    <result column="assetname" property="assetname" jdbcType="VARCHAR" />
+    <result column="assetcode" property="assetcode" jdbcType="VARCHAR" />
+    <result column="cleandate" property="cleandate" jdbcType="TIMESTAMP" />
+    <result column="cleanway" property="cleanway" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, scrapnum, assetname, assetcode, cleandate, cleanway, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.bronze.entities.TScrapExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_scrap
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_scrap
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_scrap
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.bronze.entities.TScrapExample" >
+    delete from t_scrap
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.bronze.entities.TScrap" >
+    insert into t_scrap (id, scrapnum, assetname, 
+      assetcode, cleandate, cleanway, 
+      remark)
+    values (#{id,jdbcType=INTEGER}, #{scrapnum,jdbcType=VARCHAR}, #{assetname,jdbcType=VARCHAR}, 
+      #{assetcode,jdbcType=VARCHAR}, #{cleandate,jdbcType=TIMESTAMP}, #{cleanway,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.bronze.entities.TScrap" >
+    insert into t_scrap
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="scrapnum != null" >
+        scrapnum,
+      </if>
+      <if test="assetname != null" >
+        assetname,
+      </if>
+      <if test="assetcode != null" >
+        assetcode,
+      </if>
+      <if test="cleandate != null" >
+        cleandate,
+      </if>
+      <if test="cleanway != null" >
+        cleanway,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="scrapnum != null" >
+        #{scrapnum,jdbcType=VARCHAR},
+      </if>
+      <if test="assetname != null" >
+        #{assetname,jdbcType=VARCHAR},
+      </if>
+      <if test="assetcode != null" >
+        #{assetcode,jdbcType=VARCHAR},
+      </if>
+      <if test="cleandate != null" >
+        #{cleandate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cleanway != null" >
+        #{cleanway,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.bronze.entities.TScrapExample" resultType="java.lang.Integer" >
+    select count(*) from t_scrap
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_scrap
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.scrapnum != null" >
+        scrapnum = #{record.scrapnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assetname != null" >
+        assetname = #{record.assetname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assetcode != null" >
+        assetcode = #{record.assetcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cleandate != null" >
+        cleandate = #{record.cleandate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cleanway != null" >
+        cleanway = #{record.cleanway,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_scrap
+    set id = #{record.id,jdbcType=INTEGER},
+      scrapnum = #{record.scrapnum,jdbcType=VARCHAR},
+      assetname = #{record.assetname,jdbcType=VARCHAR},
+      assetcode = #{record.assetcode,jdbcType=VARCHAR},
+      cleandate = #{record.cleandate,jdbcType=TIMESTAMP},
+      cleanway = #{record.cleanway,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bronze.entities.TScrap" >
+    update t_scrap
+    <set >
+      <if test="scrapnum != null" >
+        scrapnum = #{scrapnum,jdbcType=VARCHAR},
+      </if>
+      <if test="assetname != null" >
+        assetname = #{assetname,jdbcType=VARCHAR},
+      </if>
+      <if test="assetcode != null" >
+        assetcode = #{assetcode,jdbcType=VARCHAR},
+      </if>
+      <if test="cleandate != null" >
+        cleandate = #{cleandate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cleanway != null" >
+        cleanway = #{cleanway,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bronze.entities.TScrap" >
+    update t_scrap
+    set scrapnum = #{scrapnum,jdbcType=VARCHAR},
+      assetname = #{assetname,jdbcType=VARCHAR},
+      assetcode = #{assetcode,jdbcType=VARCHAR},
+      cleandate = #{cleandate,jdbcType=TIMESTAMP},
+      cleanway = #{cleanway,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

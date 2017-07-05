@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+body{ background: #fff;word-break: break-all;word-wrap: break-word;font: 12px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif;margin: 0px;padding: 0px;color: #404040;}
+div{margin:0 auto; padding:0;}
+/*全局链接样式*/
+a{ color:#3B568F; text-decoration:none; }
+form {margin: 0 0 15px;}
+.container-f{padding:10px;padding-left:70px;}
+.returnbtn
+{
+top:80px;
+left:30px;
+position:absolute;
+}
+
+.la{font-size:15px;}
+.form
+{
+top:200px;
+left:30px;
+
+}
+.form-actions{
+left:190px;
+position:absolute;
+padding: 19px 20px 20px;}
+.form{ font-size:15px; }
+.input-xlarge{ width:270px}
+
+.control-group cf clearfix 
+{
+top:100px;
+left:30px;
+}
+.name{font-size:15px}
+.control-label { text-align:left!important; float: left;padding-top: 2px;text-align: left;width: 80px;font-weight: bold;}
+
+.control-group{ padding-bottom:10px;margin-left:120px;}
+.btn:hover{
+	border-color: #c6c6c6;
+	text-decoration:none;
+	color:#000;
+}
+.add{width:100px}
+ .controls { margin-left:150px; }
+ .input{height: 30px;font-size: 13px;border:1px solid #c5c5c5;}

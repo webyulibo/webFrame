@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bronze.daos.TLogMapperExtand" >
+  <resultMap id="BaseResultMap" type="cn.bronze.entities.TLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="operatorpeople" property="operatorpeople" jdbcType="VARCHAR" />
+    <result column="peopledep" property="peopledep" jdbcType="VARCHAR" />
+    <result column="operatortime" property="operatortime" jdbcType="TIMESTAMP" />
+    <result column="operatorname" property="operatorname" jdbcType="VARCHAR" />
+    <result column="operatorautho" property="operatorautho" jdbcType="VARCHAR" />
+    <result column="operatorrole" property="operatorrole" jdbcType="VARCHAR" />
+    <result column="operatedescription" property="operatedescription" jdbcType="VARCHAR" />
+  </resultMap>
+   <select id="selectLogOperatorpeople" resultType="String">
+  	SELECT DISTINCT operatorpeople FROM t_log
+  </select>
+    <select id="selectLogPeopledep" resultType="String">
+  	SELECT DISTINCT peopledep FROM t_log
+  </select>
+    <select id="selectLogOperatorname" resultType="String">
+  	SELECT DISTINCT operatorname FROM t_log
+  </select>
+  </mapper>

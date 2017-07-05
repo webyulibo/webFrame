@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bronze.daos.MyImportMapper" >
+  <resultMap id="BaseResultMap" type="cn.bronze.entities.TUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="useraccount" property="useraccount" jdbcType="VARCHAR" />
+    <result column="userpassword" property="userpassword" jdbcType="VARCHAR" />
+    <result column="usercode" property="usercode" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="usertype" property="usertype" jdbcType="VARCHAR" />
+    <result column="userbankcode" property="userbankcode" jdbcType="VARCHAR" />
+    <result column="usersalarycode" property="usersalarycode" jdbcType="VARCHAR" />
+    <result column="usersex" property="usersex" jdbcType="VARCHAR" />
+    <result column="userstate" property="userstate" jdbcType="VARCHAR" />
+    <result column="userdep" property="userdep" jdbcType="VARCHAR" />
+    <result column="userrole" property="userrole" jdbcType="INTEGER" />
+    <result column="userduty" property="userduty" jdbcType="VARCHAR" />
+  </resultMap>
+<select id="getNamelist" parameterType="String" resultType="String"> 
+select username from t_user 
+</select>
+<select id="getName" parameterType="String" resultType="String"> 
+select username  from t_user where username= #{username,jdbcType=VARCHAR}
+</select>
+  <update id="updataUser" parameterType="cn.bronze.entities.TUser" >
+    update t_user
+    <set >
+      <if test="useraccount != null" >
+        useraccount = #{useraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="userpassword != null" >
+        userpassword = #{userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="usercode != null" >
+        usercode = #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        usertype = #{usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="userbankcode != null" >
+        userbankcode = #{userbankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="usersalarycode != null" >
+        usersalarycode = #{usersalarycode,jdbcType=VARCHAR},
+      </if>
+      <if test="usersex != null" >
+        usersex = #{usersex,jdbcType=VARCHAR},
+      </if>
+      <if test="userstate != null" >
+        userstate = #{userstate,jdbcType=VARCHAR},
+      </if>
+      <if test="userdep != null" >
+        userdep = #{userdep,jdbcType=VARCHAR},
+      </if>
+      <if test="userrole != null" >
+        userrole = #{userrole,jdbcType=INTEGER},
+      </if>
+      <if test="userduty != null" >
+        userduty = #{userduty,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where  username = #{username,jdbcType=VARCHAR}
+  </update>
+    <update id="updataDep" parameterType="cn.bronze.entities.TDepartment" >
+    update t_department
+    <set >
+    <if test="depname!= null" >
+        depname = #{depname,jdbcType=VARCHAR},
+      </if>
+      <if test="depaddress != null" >
+        depaddress = #{depaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="depprincipal != null" >
+        depprincipal = #{depprincipal,jdbcType=VARCHAR},
+      </if>
+      <if test="deptelephone != null" >
+        deptelephone = #{deptelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="depstage != null" >
+        depstage = #{depstage,jdbcType=BIT},
+      </if>
+      <if test="depstate != null" >
+        depstate = #{depstate,jdbcType=VARCHAR},
+      </if>
+      <if test="depusernum != null" >
+        depusernum = #{depusernum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where depcode = #{depcode,jdbcType=VARCHAR}
+  </update>
+<select id="getDepname" parameterType="String" resultType="String"> 
+select depname  from t_department where depname= #{depname,jdbcType=VARCHAR}
+</select>
+<select id="getDepcode" parameterType="String" resultType="String"> 
+select depcode  from t_department where depname= #{userdep,jdbcType=VARCHAR}
+</select>
+<select id="getDepcode1" parameterType="String" resultType="String"> 
+select depcode  from t_department where depcode= #{depcode,jdbcType=VARCHAR}
+</select>
+  </mapper>

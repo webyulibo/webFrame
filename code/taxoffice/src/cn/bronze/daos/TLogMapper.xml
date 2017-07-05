@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bronze.daos.TLogMapper" >
+  <resultMap id="BaseResultMap" type="cn.bronze.entities.TLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="operatorpeople" property="operatorpeople" jdbcType="VARCHAR" />
+    <result column="peopledep" property="peopledep" jdbcType="VARCHAR" />
+    <result column="operatortime" property="operatortime" jdbcType="TIMESTAMP" />
+    <result column="operatorname" property="operatorname" jdbcType="VARCHAR" />
+    <result column="operatorautho" property="operatorautho" jdbcType="VARCHAR" />
+    <result column="operatorrole" property="operatorrole" jdbcType="VARCHAR" />
+    <result column="operatedescription" property="operatedescription" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, operatorpeople, peopledep, operatortime, operatorname, operatorautho, operatorrole, 
+    operatedescription
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.bronze.entities.TLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.bronze.entities.TLogExample" >
+    delete from t_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.bronze.entities.TLog" >
+    insert into t_log (id, operatorpeople, peopledep, 
+      operatortime, operatorname, operatorautho, 
+      operatorrole, operatedescription)
+    values (#{id,jdbcType=INTEGER}, #{operatorpeople,jdbcType=VARCHAR}, #{peopledep,jdbcType=VARCHAR}, 
+      #{operatortime,jdbcType=TIMESTAMP}, #{operatorname,jdbcType=VARCHAR}, #{operatorautho,jdbcType=VARCHAR}, 
+      #{operatorrole,jdbcType=VARCHAR}, #{operatedescription,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.bronze.entities.TLog" >
+    insert into t_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="operatorpeople != null" >
+        operatorpeople,
+      </if>
+      <if test="peopledep != null" >
+        peopledep,
+      </if>
+      <if test="operatortime != null" >
+        operatortime,
+      </if>
+      <if test="operatorname != null" >
+        operatorname,
+      </if>
+      <if test="operatorautho != null" >
+        operatorautho,
+      </if>
+      <if test="operatorrole != null" >
+        operatorrole,
+      </if>
+      <if test="operatedescription != null" >
+        operatedescription,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="operatorpeople != null" >
+        #{operatorpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="peopledep != null" >
+        #{peopledep,jdbcType=VARCHAR},
+      </if>
+      <if test="operatortime != null" >
+        #{operatortime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorname != null" >
+        #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorautho != null" >
+        #{operatorautho,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorrole != null" >
+        #{operatorrole,jdbcType=VARCHAR},
+      </if>
+      <if test="operatedescription != null" >
+        #{operatedescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.bronze.entities.TLogExample" resultType="java.lang.Integer" >
+    select count(*) from t_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_log
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.operatorpeople != null" >
+        operatorpeople = #{record.operatorpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="record.peopledep != null" >
+        peopledep = #{record.peopledep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatortime != null" >
+        operatortime = #{record.operatortime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.operatorname != null" >
+        operatorname = #{record.operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorautho != null" >
+        operatorautho = #{record.operatorautho,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorrole != null" >
+        operatorrole = #{record.operatorrole,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatedescription != null" >
+        operatedescription = #{record.operatedescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_log
+    set id = #{record.id,jdbcType=INTEGER},
+      operatorpeople = #{record.operatorpeople,jdbcType=VARCHAR},
+      peopledep = #{record.peopledep,jdbcType=VARCHAR},
+      operatortime = #{record.operatortime,jdbcType=TIMESTAMP},
+      operatorname = #{record.operatorname,jdbcType=VARCHAR},
+      operatorautho = #{record.operatorautho,jdbcType=VARCHAR},
+      operatorrole = #{record.operatorrole,jdbcType=VARCHAR},
+      operatedescription = #{record.operatedescription,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bronze.entities.TLog" >
+    update t_log
+    <set >
+      <if test="operatorpeople != null" >
+        operatorpeople = #{operatorpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="peopledep != null" >
+        peopledep = #{peopledep,jdbcType=VARCHAR},
+      </if>
+      <if test="operatortime != null" >
+        operatortime = #{operatortime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorname != null" >
+        operatorname = #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorautho != null" >
+        operatorautho = #{operatorautho,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorrole != null" >
+        operatorrole = #{operatorrole,jdbcType=VARCHAR},
+      </if>
+      <if test="operatedescription != null" >
+        operatedescription = #{operatedescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bronze.entities.TLog" >
+    update t_log
+    set operatorpeople = #{operatorpeople,jdbcType=VARCHAR},
+      peopledep = #{peopledep,jdbcType=VARCHAR},
+      operatortime = #{operatortime,jdbcType=TIMESTAMP},
+      operatorname = #{operatorname,jdbcType=VARCHAR},
+      operatorautho = #{operatorautho,jdbcType=VARCHAR},
+      operatorrole = #{operatorrole,jdbcType=VARCHAR},
+      operatedescription = #{operatedescription,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

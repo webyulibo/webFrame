@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bronze.daos.TMessageListWithMobilizePeopleMapper" >
+  <select id="getMessageListWithMobilizePeoples" parameterType="String" resultType="cn.bronze.entities.TMessageListWithMobilizePeople">
+SELECT id AS sid,title AS title,sendpeople AS sendpeople,sendtime AS sendtime,(SELECT depname FROM t_department WHERE depcode=senddepcode) AS senddepname,'0' AS mark,STATUS AS STATUS FROM t_message WHERE acceptdepcode=#{depcode} UNION ALL SELECT id AS sid,'人员变动通知' AS title,'人事教育科' AS sendpeople,sendtime AS sendtime,'人事教育科' AS senddepcode,'1' AS mark,STATUS AS STATUS FROM t_mobilizepeople WHERE originaldep=(SELECT depname FROM t_department WHERE depcode=#{depcode}) ORDER BY sendtime DESC
+  </select>
+    <select id="getMessageListWithAllMobilizePeoples" parameterType="String" resultType="cn.bronze.entities.TMessageListWithMobilizePeople">
+SELECT id AS sid,title AS title,sendpeople AS sendpeople,sendtime AS sendtime,(SELECT depname FROM t_department WHERE depcode=senddepcode) AS senddepname,'0' AS mark,STATUS AS STATUS FROM t_message WHERE acceptdepcode=#{depcode} UNION ALL SELECT id AS sid,'人员变动通知' AS title,'人事教育科' AS sendpeople,sendtime AS sendtime,'人事教育科' AS senddepcode,'1' AS mark,STATUS AS STATUS FROM t_mobilizepeople  ORDER BY sendtime DESC
+  </select>
+</mapper>

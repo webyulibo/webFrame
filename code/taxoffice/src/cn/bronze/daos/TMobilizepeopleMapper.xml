@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bronze.daos.TMobilizepeopleMapper" >
+  <resultMap id="BaseResultMap" type="cn.bronze.entities.TMobilizepeople" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="originaldep" property="originaldep" jdbcType="VARCHAR" />
+    <result column="newdep" property="newdep" jdbcType="VARCHAR" />
+    <result column="financialdep" property="financialdep" jdbcType="VARCHAR" />
+    <result column="usedep" property="usedep" jdbcType="VARCHAR" />
+    <result column="servicedep" property="servicedep" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="depchange" property="depchange" jdbcType="VARCHAR" />
+    <result column="sendtime" property="sendtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, username, originaldep, newdep, financialdep, usedep, servicedep, status, depchange, 
+    sendtime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.bronze.entities.TMobilizepeopleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_mobilizepeople
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_mobilizepeople
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_mobilizepeople
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.bronze.entities.TMobilizepeopleExample" >
+    delete from t_mobilizepeople
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.bronze.entities.TMobilizepeople" >
+    insert into t_mobilizepeople (id, username, originaldep, 
+      newdep, financialdep, usedep, 
+      servicedep, status, depchange, 
+      sendtime)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{originaldep,jdbcType=VARCHAR}, 
+      #{newdep,jdbcType=VARCHAR}, #{financialdep,jdbcType=VARCHAR}, #{usedep,jdbcType=VARCHAR}, 
+      #{servicedep,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{depchange,jdbcType=VARCHAR}, 
+      #{sendtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.bronze.entities.TMobilizepeople" >
+    insert into t_mobilizepeople
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="originaldep != null" >
+        originaldep,
+      </if>
+      <if test="newdep != null" >
+        newdep,
+      </if>
+      <if test="financialdep != null" >
+        financialdep,
+      </if>
+      <if test="usedep != null" >
+        usedep,
+      </if>
+      <if test="servicedep != null" >
+        servicedep,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="depchange != null" >
+        depchange,
+      </if>
+      <if test="sendtime != null" >
+        sendtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="originaldep != null" >
+        #{originaldep,jdbcType=VARCHAR},
+      </if>
+      <if test="newdep != null" >
+        #{newdep,jdbcType=VARCHAR},
+      </if>
+      <if test="financialdep != null" >
+        #{financialdep,jdbcType=VARCHAR},
+      </if>
+      <if test="usedep != null" >
+        #{usedep,jdbcType=VARCHAR},
+      </if>
+      <if test="servicedep != null" >
+        #{servicedep,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="depchange != null" >
+        #{depchange,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.bronze.entities.TMobilizepeopleExample" resultType="java.lang.Integer" >
+    select count(*) from t_mobilizepeople
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_mobilizepeople
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.originaldep != null" >
+        originaldep = #{record.originaldep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newdep != null" >
+        newdep = #{record.newdep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financialdep != null" >
+        financialdep = #{record.financialdep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usedep != null" >
+        usedep = #{record.usedep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.servicedep != null" >
+        servicedep = #{record.servicedep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.depchange != null" >
+        depchange = #{record.depchange,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendtime != null" >
+        sendtime = #{record.sendtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_mobilizepeople
+    set id = #{record.id,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      originaldep = #{record.originaldep,jdbcType=VARCHAR},
+      newdep = #{record.newdep,jdbcType=VARCHAR},
+      financialdep = #{record.financialdep,jdbcType=VARCHAR},
+      usedep = #{record.usedep,jdbcType=VARCHAR},
+      servicedep = #{record.servicedep,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=BIT},
+      depchange = #{record.depchange,jdbcType=VARCHAR},
+      sendtime = #{record.sendtime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bronze.entities.TMobilizepeople" >
+    update t_mobilizepeople
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="originaldep != null" >
+        originaldep = #{originaldep,jdbcType=VARCHAR},
+      </if>
+      <if test="newdep != null" >
+        newdep = #{newdep,jdbcType=VARCHAR},
+      </if>
+      <if test="financialdep != null" >
+        financialdep = #{financialdep,jdbcType=VARCHAR},
+      </if>
+      <if test="usedep != null" >
+        usedep = #{usedep,jdbcType=VARCHAR},
+      </if>
+      <if test="servicedep != null" >
+        servicedep = #{servicedep,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="depchange != null" >
+        depchange = #{depchange,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null" >
+        sendtime = #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bronze.entities.TMobilizepeople" >
+    update t_mobilizepeople
+    set username = #{username,jdbcType=VARCHAR},
+      originaldep = #{originaldep,jdbcType=VARCHAR},
+      newdep = #{newdep,jdbcType=VARCHAR},
+      financialdep = #{financialdep,jdbcType=VARCHAR},
+      usedep = #{usedep,jdbcType=VARCHAR},
+      servicedep = #{servicedep,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      depchange = #{depchange,jdbcType=VARCHAR},
+      sendtime = #{sendtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

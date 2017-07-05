@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bronze.daos.MyDbMapper" >
+  <resultMap id="BaseResultMap" type="cn.bronze.entities.TDb" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="dbname" property="dbname" jdbcType="VARCHAR" />
+    <result column="dbdate" property="dbdate" jdbcType="DATE" />
+    <result column="adress" property="adress" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 用于查询文件名称-->
+<select id="getName" parameterType="String" resultType="String"> 
+select dbname  from t_db where dbname= #{dbname,jdbcType=VARCHAR}
+</select>
+ <insert id="insert" parameterType="cn.bronze.entities.TDb" >
+    insert into t_db (dbname, dbdate, 
+      adress, remark)
+    values (#{dbname,jdbcType=VARCHAR}, #{dbdate,jdbcType=DATE}, 
+      #{adress,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+    <!-- 用于查询文件路径-->
+<select id="getFilePath" parameterType="String" resultType="String"> 
+select adress  from t_db where dbname= #{dbname,jdbcType=VARCHAR}
+</select>
+<!-- 删除记录 -->
+<delete id="delete" parameterType="String" >
+    delete from t_db
+    where dbname = #{dbname,jdbcType=VARCHAR}
+  </delete>
+</mapper>

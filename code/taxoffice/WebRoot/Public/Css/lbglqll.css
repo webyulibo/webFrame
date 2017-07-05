@@ -1,0 +1,43 @@
+﻿@CHARSET "UTF-8";
+ body{ background: #fff;word-break: break-all;word-wrap: break-word;font: 12px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif;margin: 0px;padding: 0px;color: #404040;}
+div{margin:0 auto; padding:0;}
+/*链接样式*/
+a{ color:#3B568F; text-decoration:none; }
+.container-f{padding:10px;}
+/*返回键位置*/
+.returnbtn
+{
+top:80px;
+left:30px;
+position:absolute;
+}
+/*顶部div样式*/
+
+.name{font-size:15px;}
+/*表单位置*/
+.form
+{
+top:200px;
+left:30px;
+font-size:15px;
+}
+/*添加键位置*/
+.form-actions
+{
+left:190px;
+position:absolute;
+padding: 19px 20px 20px;
+}
+.input-xlarge{ width:270px}
+.control-label { text-align:left!important; float: left;padding-top: 2px;text-align: left;width: 140px;font-weight: bold;}
+/*返回按键样式*/
+
+.control-group{ padding-bottom:10px}
+.btn:hover{
+	border-color: #c6c6c6;
+	text-decoration:none;
+	color:#000;
+}
+.add{width:100px}
+.controls { margin-left:150px; }
+.input{height: 30px;font-size: 13px;border:1px solid #c5c5c5}

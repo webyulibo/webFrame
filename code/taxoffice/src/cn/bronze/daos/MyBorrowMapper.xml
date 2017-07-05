@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bronze.daos.MyBorrowMapper" >
+  <resultMap id="BaseResultMap" type="cn.bronze.entities.TAssetborrow" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="borrownum" property="borrownum" jdbcType="VARCHAR" />
+    <result column="assetcode" property="assetcode" jdbcType="VARCHAR" />
+    <result column="assetname" property="assetname" jdbcType="VARCHAR" />
+    <result column="borrowdate" property="borrowdate" jdbcType="DATE" />
+    <result column="borrowdep" property="borrowdep" jdbcType="VARCHAR" />
+    <result column="borrowpeople" property="borrowpeople" jdbcType="VARCHAR" />
+    <result column="approvepeople" property="approvepeople" jdbcType="VARCHAR" />
+    <result column="plandate" property="plandate" jdbcType="DATE" />
+    <result column="borrowusedep" property="borrowusedep" jdbcType="VARCHAR" />
+    <result column="borrowuser" property="borrowuser" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 用于监听文本框变化查出assetcode-->
+<select id="getAllAssetcode" parameterType="String" resultType="String"> 
+select code from t_asset 
+</select>
+<!-- 用于监听文本框变化查出所有的assetcode-->
+<select id="getAssetcode" parameterType="String" resultType="String"> 
+select code from t_asset where code like concat('%',#{assetcode},'%') 
+</select>
+<!-- 用于监听文本框变化查出assetname-->
+<select id="getAssetname" parameterType="String" resultType="String"> 
+select name  from t_asset where code= #{assetcode,jdbcType=VARCHAR}
+</select>
+<!-- 用于监听文本框变化查出assetcode-->
+<select id="getAssetcode1" parameterType="String" resultType="String"> 
+select code  from t_asset where name= #{assetname,jdbcType=VARCHAR}
+</select>
+<!-- 用于检查资产的状态-->
+<select id="checkAssetState" parameterType="String" resultType="String"> 
+select usestate  from t_asset where code= #{code,jdbcType=VARCHAR}
+</select>
+<!--改变资产的状态  -->
+  <update id="changeAssetState" parameterType="String" >
+    update t_asset  set usestate = '在用' where code= #{assetcode,jdbcType=VARCHAR}
+  </update>
+  <!-- 用于监听文本框变化查出所有的assetname-->
+<select id="getAllAssetname" parameterType="String" resultType="String"> 
+select name from t_asset 
+</select>
+<!--  删除对应的借用记录-->
+<delete id="deleteReturnRecord" parameterType="String" >
+    delete from t_assetborrow   where borrownum = #{borrownum,jdbcType=VARCHAR}
+  </delete>
+  <select id="getAssetcode2" parameterType="String" resultType="String"> 
+select code from t_asset where code = #{assetcode,jdbcType=VARCHAR}
+</select>
+  <select id="getAssetname3" parameterType="String" resultType="String"> 
+select name from t_asset where name = #{assetname,jdbcType=VARCHAR}
+</select>
+
+  <select id="getBorrownumJson1"  resultType="String"> 
+select borrownum from t_assetborrow 
+</select>
+
+<select id="getcheck1" resultMap="BaseResultMap" parameterType="String" >
+    select   *  from t_assetborrow
+    where borrownum = #{borrownum,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getAssetcode11" parameterType="String" resultType="String"> 
+select assetcode  from t_scrap where assetname= #{assetname,jdbcType=VARCHAR}
+</select>
+</mapper>

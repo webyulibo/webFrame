@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bronze.daos.MyDepartmentMapper" >
+  <resultMap id="BaseResultMap" type="cn.bronze.entities.TDepartment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="depcode" property="depcode" jdbcType="VARCHAR" />
+    <result column="depname" property="depname" jdbcType="VARCHAR" />
+    <result column="depaddress" property="depaddress" jdbcType="VARCHAR" />
+    <result column="depprincipal" property="depprincipal" jdbcType="VARCHAR" />
+    <result column="deptelephone" property="deptelephone" jdbcType="VARCHAR" />
+    <result column="depstage" property="depstage" jdbcType="BIT" />
+    <result column="depstate" property="depstate" jdbcType="VARCHAR" />
+    <result column="depusernum" property="depusernum" jdbcType="INTEGER" />
+  </resultMap>
+  <!-- 用于查询部门代码-->
+<select id="getDepartmentCode" parameterType="String" resultType="String"> 
+select depcode  from t_department where depname= #{borrowdep,jdbcType=VARCHAR}
+</select>
+  <!-- 用于查询部门名称-->
+<select id="getBorrowdep1" parameterType="String" resultType="String"> 
+select userdep  from t_user where username= #{borrowpeople,jdbcType=VARCHAR}
+</select>
+<select id="getBorrowdepName1" parameterType="String" resultType="String"> 
+select  depname  from t_department where depcode= #{borrowdep,jdbcType=VARCHAR}
+</select>
+  </mapper>

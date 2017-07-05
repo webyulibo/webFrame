@@ -1,0 +1,84 @@
+body{ background: #fff;word-break: break-all;word-wrap: break-word;font: 12px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif;margin: 0px;padding: 0px;color: #404040;}
+
+a {color: #3B568F;text-decoration: none;}
+
+div{margin:0 auto; padding:0;}
+
+.lbgl{padding:10px;}
+
+.lbgl-top{padding:15px;min-width:500px;}
+
+.lbgl-top-left{padding-bottom: 10px;}
+.f_1{float:left;}
+.lbgl-top-right{float:right;}
+
+.top-hx{
+	border-bottom:1px solid #ddd; padding: 5px 3px 15px; min-height:30px;
+	
+}
+
+.tab-title { padding: 10px 5px 0px 5px; min-height:30px;}
+.tab-title h3{ display:inline-block; padding:10px; float:left;}
+.tab-title h3.current{ border:1px solid #ddd; border-bottom:none; background:#f2f2f2; }
+.tab-title h3 a,.tab-title h3 a:hover{ display:block; text-decoration:none; }
+
+
+<!--增删改查小图标	-->
+
+
+input{display: inline-block;height: 20px;padding: 4px 6px;font-size: 13px;line-height: 20px;color: #555;vertical-align: middle; border:1px solid #979797}
+.btn {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	padding: 5px 12px;
+	margin: 0;
+	color: #333;
+	white-space: nowrap;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 13px;
+	text-align: center;
+	background-color: #f3f3f3;
+	border: 1px solid #dcdcdc;
+	border-radius: 2px;
+	cursor:pointer;
+	text-decoration:none;
+	height:auto;
+	line-height:23px;
+}
+.btn:hover, .btn:focus {
+	border-color: #c6c6c6;
+	text-decoration:none;
+	color:#333;
+}
+.btn span{ _position:relative; _top:3px}
+
+.btn.btn.btn-primary {background: #368ee0;color: #fff;border: 1px solid #368ee0;width:70px;height:30px;line-height:20px;}
+.btn-primary{width:70px;line-height:20px;}
+
+.tab tbody tr:hover td, .tab tbody tr:hover th {background-color: #f8f8f8;}
+.dataTable {
+	border: 1px solid #ddd;
+	margin-bottom: 10px;clear: both;
+	width:100%;
+	border-spacing: 0;
+	border-collapse:collapse;
+	min-width: 620px;
+}
+.dataTable tr th, .dataTable tr td {padding: 15px;border: 1px solid #ddd;vertical-align: middle;text-align: center;}
+.dataTable tr th{background: #eee;font-size:15px;}
+.dataTable .with-checkbox {width: 10px;text-align: left;}
+.dataTable .btn{ _margin-right:5px}
+form{margin-bottom:20px;margin:0 0 15px;}
+.form-edit{
+	width:100%;
+	font-size:13px;
+	height:160px;
+	font-weight: bolder;
+	margin-top:20px;
+}
+.bottom{}
+.form-row{padding-bottom:10px;}
+.form-lb{font-size:15px;margin-right: 30px;width: 140px;font-weight:bolder;}
+.form-text{line-height: 20px;margin:5px;}

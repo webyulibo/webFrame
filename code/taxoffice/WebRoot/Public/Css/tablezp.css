@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+.add table td{
+	width:125px;
+}
+.diffinputdiv{
+	position:relative;
+}
+.diffinputspan{
+	margin-left:132px;width:18px;overflow:hidden;
+}
+.diffinputsel{
+	width:150px;margin-left:-132px;
+}
+.diffinput{
+	width:132px;position:absolute;left:0px;
+}
+div.modal-body{
+	padding:0px;
+}
+div.modal-footer{
+	padding:0px;
+}
+div.modal-header{
+	padding:0px;
+	padding-top:10px;
+	padding-left:30px;
+}
+.modal_save,.modal_giveUp{
+	height:30px;
+}
+.modal_save{
+	padding-top:5px;
+	margin-left:105px;
+	padding-bottom:10px;
+}
+.modal_giveUp{
+	padding-top:7px;
+	padding-bottom:8px;
+	margin-left:100px;
+	margin-right:50px;
+}
